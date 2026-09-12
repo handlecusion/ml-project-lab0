@@ -33,25 +33,25 @@ def random_distribution(k: int) -> np.ndarray:
 
 
 # ------------------------------- Task 1 -------------------------------------
-# def test_sigmoid_at_zero_is_half():
-#     assert sigmoid(np.array([0.0]))[0] == pytest.approx(0.5)
+def test_sigmoid_at_zero_is_half():
+    assert sigmoid(np.array([0.0]))[0] == pytest.approx(0.5)
 
 
-# def test_sigmoid_is_bounded_and_increasing():
-#     z = np.array([-4.0, -1.0, 0.0, 1.0, 4.0])
-#     s = sigmoid(z)
-#     assert np.all(s > 0.0) and np.all(s < 1.0)
-#     assert np.all(np.diff(s) > 0.0)
+def test_sigmoid_is_bounded_and_increasing():
+    z = np.array([-4.0, -1.0, 0.0, 1.0, 4.0])
+    s = sigmoid(z)
+    assert np.all(s > 0.0) and np.all(s < 1.0)
+    assert np.all(np.diff(s) > 0.0)
 
 
-# def test_sigmoid_symmetry():
-#     z = np.array([-3.0, -0.5, 0.7, 2.2])
-#     assert sigmoid(-z) == pytest.approx(1.0 - sigmoid(z))
+def test_sigmoid_symmetry():
+    z = np.array([-3.0, -0.5, 0.7, 2.2])
+    assert sigmoid(-z) == pytest.approx(1.0 - sigmoid(z))
 
 
-# def test_sigmoid_is_finite_for_large_inputs():
-#     s = sigmoid(np.array([-1000.0, 1000.0]))
-#     assert np.all(np.isfinite(s)), "sigmoid overflowed on large-magnitude input"
+def test_sigmoid_is_finite_for_large_inputs():
+    s = sigmoid(np.array([-1000.0, 1000.0]))
+    assert np.all(np.isfinite(s)), "sigmoid overflowed on large-magnitude input"
 
 
 # ------------------------------- Task 2 -------------------------------------
