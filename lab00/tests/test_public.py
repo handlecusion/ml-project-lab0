@@ -104,47 +104,47 @@ def test_softmax_np_is_finite_for_large_inputs():
 
 
 # ------------------------------- Task 4 -------------------------------------
-# def test_entropy_of_uniform_is_log_k():
-#     k = 4
-#     assert entropy(np.full(k, 1.0 / k)) == pytest.approx(np.log(k))
+def test_entropy_of_uniform_is_log_k():
+    k = 4
+    assert entropy(np.full(k, 1.0 / k)) == pytest.approx(np.log(k))
 
 
-# def test_entropy_of_onehot_is_zero():
-#     assert entropy(np.array([0.0, 1.0, 0.0])) == pytest.approx(0.0, abs=1e-9)
+def test_entropy_of_onehot_is_zero():
+    assert entropy(np.array([0.0, 1.0, 0.0])) == pytest.approx(0.0, abs=1e-9)
 
 
-# def test_entropy_is_a_nonnegative_float():
-#     h = entropy(random_distribution(6))
-#     assert isinstance(h, float)
-#     assert h >= 0.0
+def test_entropy_is_a_nonnegative_float():
+    h = entropy(random_distribution(6))
+    assert isinstance(h, float)
+    assert h >= 0.0
 
 
 # ------------------------------- Task 5 -------------------------------------
-# def test_cross_entropy_with_itself_equals_entropy():
-#     p = random_distribution(5)
-#     assert cross_entropy(p, p) == pytest.approx(entropy(p))
+def test_cross_entropy_with_itself_equals_entropy():
+    p = random_distribution(5)
+    assert cross_entropy(p, p) == pytest.approx(entropy(p))
 
 
-# def test_cross_entropy_is_at_least_entropy():
-#     p = random_distribution(5)
-#     q = random_distribution(5)
-#     assert cross_entropy(p, q) >= entropy(p) - 1e-12
+def test_cross_entropy_is_at_least_entropy():
+    p = random_distribution(5)
+    q = random_distribution(5)
+    assert cross_entropy(p, q) >= entropy(p) - 1e-12
 
 
-# def test_cross_entropy_handles_zero_probabilities():
-#     p = np.array([0.0, 1.0])
-#     q = np.array([1.0, 0.0])
-#     value = cross_entropy(p, q)
-#     assert np.isfinite(value), "cross_entropy must stay finite when q has a zero"
-#     assert value > 10.0
+def test_cross_entropy_handles_zero_probabilities():
+    p = np.array([0.0, 1.0])
+    q = np.array([1.0, 0.0])
+    value = cross_entropy(p, q)
+    assert np.isfinite(value), "cross_entropy must stay finite when q has a zero"
+    assert value > 10.0
 
 
-# def test_cross_entropy_does_not_modify_its_inputs():
-#     p = np.array([0.0, 0.5, 0.5])
-#     q = np.array([0.2, 0.3, 0.5])
-#     cross_entropy(p, q)
-#     assert p.tolist() == [0.0, 0.5, 0.5]
-#     assert q.tolist() == [0.2, 0.3, 0.5]
+def test_cross_entropy_does_not_modify_its_inputs():
+    p = np.array([0.0, 0.5, 0.5])
+    q = np.array([0.2, 0.3, 0.5])
+    cross_entropy(p, q)
+    assert p.tolist() == [0.0, 0.5, 0.5]
+    assert q.tolist() == [0.2, 0.3, 0.5]
 
 
 # ------------------------------- Task 6 -------------------------------------

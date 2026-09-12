@@ -97,7 +97,9 @@ def entropy(p: np.ndarray) -> float:
         0 * log(0) = 0, so the result stays finite (never `nan`, never `inf`).
         A one-hot `p` must give exactly 0.0.
     """
-    raise NotImplementedError
+    p = np.asarray(p, dtype=float)
+    nz = p > 0
+    return float(-(p[nz] * np.log(p[nz])).sum())
 # ============================ END TODO (Task 4) ==============================
 
 
@@ -122,7 +124,12 @@ def cross_entropy(p: np.ndarray, q: np.ndarray) -> float:
         probability you take the logarithm of; Task 6 must use the same value.
         Do not modify the inputs in place.
     """
-    raise NotImplementedError
+    p = np.array(p, dtype=float)
+    q = np.array(q, dtype=float)
+    print(p, q)
+    mask = p > 0
+    q_safe = np.clip(q[mask], 1e-12, None)
+    return float(-(p[mask] * np.log(q_safe)).sum())
 # ============================ END TODO (Task 5) ==============================
 
 
