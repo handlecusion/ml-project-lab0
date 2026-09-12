@@ -55,52 +55,52 @@ def test_sigmoid_is_finite_for_large_inputs():
 
 
 # ------------------------------- Task 2 -------------------------------------
-# def test_softmax_loop_returns_a_plain_list():
-#     out = softmax_loop([1.0, 2.0, 3.0])
-#     assert isinstance(out, list)
-#     assert all(isinstance(v, float) for v in out)
+def test_softmax_loop_returns_a_plain_list():
+    out = softmax_loop([1.0, 2.0, 3.0])
+    assert isinstance(out, list)
+    assert all(isinstance(v, float) for v in out)
 
 
-# def test_softmax_loop_uses_no_numpy():
-#     tree = ast.parse(textwrap.dedent(inspect.getsource(softmax_loop)))
-#     used = {n.id for n in ast.walk(tree) if isinstance(n, ast.Name)}
-#     for node in ast.walk(tree):
-#         if isinstance(node, ast.Import):
-#             used |= {a.name.split(".")[0] for a in node.names}
-#         elif isinstance(node, ast.ImportFrom) and node.module:
-#             used.add(node.module.split(".")[0])
-#     assert not ({"np", "numpy"} & used), (
-#         "softmax_loop must be written in pure Python (no NumPy)."
-#     )
+def test_softmax_loop_uses_no_numpy():
+    tree = ast.parse(textwrap.dedent(inspect.getsource(softmax_loop)))
+    used = {n.id for n in ast.walk(tree) if isinstance(n, ast.Name)}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            used |= {a.name.split(".")[0] for a in node.names}
+        elif isinstance(node, ast.ImportFrom) and node.module:
+            used.add(node.module.split(".")[0])
+    assert not ({"np", "numpy"} & used), (
+        "softmax_loop must be written in pure Python (no NumPy)."
+    )
 
 
-# def test_softmax_loop_sums_to_one():
-#     out = softmax_loop([2.0, 1.0, 0.1, -1.5])
-#     assert sum(out) == pytest.approx(1.0)
-#     assert all(v > 0.0 for v in out)
+def test_softmax_loop_sums_to_one():
+    out = softmax_loop([2.0, 1.0, 0.1, -1.5])
+    assert sum(out) == pytest.approx(1.0)
+    assert all(v > 0.0 for v in out)
 
 
-# def test_softmax_loop_is_finite_for_large_inputs():
-#     out = softmax_loop([1000.0, 1001.0])
-#     assert all(np.isfinite(v) for v in out)
-#     assert sum(out) == pytest.approx(1.0)
+def test_softmax_loop_is_finite_for_large_inputs():
+    out = softmax_loop([1000.0, 1001.0])
+    assert all(np.isfinite(v) for v in out)
+    assert sum(out) == pytest.approx(1.0)
 
 
 # ------------------------------- Task 3 -------------------------------------
-# def test_softmax_np_matches_softmax_loop():
-#     z = np.array([2.0, 1.0, 0.1, -1.5, 3.3])
-#     assert softmax_np(z) == pytest.approx(np.array(softmax_loop(z.tolist())))
+def test_softmax_np_matches_softmax_loop():
+    z = np.array([2.0, 1.0, 0.1, -1.5, 3.3])
+    assert softmax_np(z) == pytest.approx(np.array(softmax_loop(z.tolist())))
 
 
-# def test_softmax_np_is_shift_invariant():
-#     z = np.array([0.4, -1.2, 2.0])
-#     assert softmax_np(z + 7.0) == pytest.approx(softmax_np(z))
+def test_softmax_np_is_shift_invariant():
+    z = np.array([0.4, -1.2, 2.0])
+    assert softmax_np(z + 7.0) == pytest.approx(softmax_np(z))
 
 
-# def test_softmax_np_is_finite_for_large_inputs():
-#     out = softmax_np(np.array([1000.0, 1001.0]))
-#     assert np.all(np.isfinite(out)), "softmax_np overflowed on large input"
-#     assert out.sum() == pytest.approx(1.0)
+def test_softmax_np_is_finite_for_large_inputs():
+    out = softmax_np(np.array([1000.0, 1001.0]))
+    assert np.all(np.isfinite(out)), "softmax_np overflowed on large input"
+    assert out.sum() == pytest.approx(1.0)
 
 
 # ------------------------------- Task 4 -------------------------------------
