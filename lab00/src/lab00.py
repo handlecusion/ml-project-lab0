@@ -31,7 +31,7 @@ def sigmoid(z: np.ndarray) -> np.ndarray:
         never `nan`.
     """
     z = np.asarray(z, dtype=float)
-    return 1.0 / (1.0 + np.exp(-z))
+    return np.where(z >= 0, 1.0 / (1.0 + np.exp(-z)), np.exp(z) / (1.0 + np.exp(z)))
 # ============================ END TODO (Task 1) ==============================
 
 
