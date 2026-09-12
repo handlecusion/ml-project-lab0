@@ -149,7 +149,12 @@ def kl_divergence(p: np.ndarray, q: np.ndarray) -> float:
         must satisfy the identity D_KL(p || q) = H(p, q) - H(p); a test
         checks it against your own `cross_entropy` and `entropy`.
     """
-    raise NotImplementedError
+    p = np.asarray(p, dtype=float)
+    q = np.asarray(q, dtype=float)
+    mask = p > 0
+    q_safe = np.clip(q[mask], 1e-12, None)
+    ratio = q_safe / p[mask]
+    return float((p[mask] * np.log(ratio)).sum())
 # ============================ END TODO (Task 6) ==============================
 
 

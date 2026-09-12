@@ -148,28 +148,28 @@ def test_cross_entropy_does_not_modify_its_inputs():
 
 
 # ------------------------------- Task 6 -------------------------------------
-# def test_kl_of_identical_distributions_is_zero():
-#     p = random_distribution(4)
-#     assert kl_divergence(p, p) == pytest.approx(0.0, abs=1e-12)
+def test_kl_of_identical_distributions_is_zero():
+    p = random_distribution(4)
+    assert kl_divergence(p, p) == pytest.approx(0.0, abs=1e-12)
 
 
-# def test_kl_is_nonnegative():
-#     for _ in range(5):
-#         p = random_distribution(4)
-#         q = random_distribution(4)
-#         assert kl_divergence(p, q) >= -1e-12
+def test_kl_is_nonnegative():
+    for _ in range(5):
+        p = random_distribution(4)
+        q = random_distribution(4)
+        assert kl_divergence(p, q) >= -1e-12
 
 
-# def test_kl_equals_cross_entropy_minus_entropy():
-#     p = random_distribution(5)
-#     q = random_distribution(5)
-#     assert kl_divergence(p, q) == pytest.approx(cross_entropy(p, q) - entropy(p))
+def test_kl_equals_cross_entropy_minus_entropy():
+    p = random_distribution(5)
+    q = random_distribution(5)
+    assert kl_divergence(p, q) == pytest.approx(cross_entropy(p, q) - entropy(p))
 
 
-# def test_kl_is_asymmetric():
-#     p = np.array([0.7, 0.2, 0.1])
-#     q = np.array([0.2, 0.3, 0.5])
-#     assert kl_divergence(p, q) != pytest.approx(kl_divergence(q, p))
+def test_kl_is_asymmetric():
+    p = np.array([0.7, 0.2, 0.1])
+    q = np.array([0.2, 0.3, 0.5])
+    assert kl_divergence(p, q) != pytest.approx(kl_divergence(q, p))
 
 
 # ------------------------------- Task 7 -------------------------------------
