@@ -173,30 +173,30 @@ def test_kl_is_asymmetric():
 
 
 # ------------------------------- Task 7 -------------------------------------
-# def test_focal_loss_with_gamma_zero_is_cross_entropy():
-#     p = np.array([0.0, 1.0, 0.0, 0.0])
-#     q = softmax_np(np.array([2.0, 1.0, 0.1, -1.5]))
-#     assert focal_loss(p, q, gamma=0.0) == pytest.approx(cross_entropy(p, q))
+def test_focal_loss_with_gamma_zero_is_cross_entropy():
+    p = np.array([0.0, 1.0, 0.0, 0.0])
+    q = softmax_np(np.array([2.0, 1.0, 0.1, -1.5]))
+    assert focal_loss(p, q, gamma=0.0) == pytest.approx(cross_entropy(p, q))
 
 
-# def test_focal_loss_downweights_an_easy_example():
-#     p = np.array([0.0, 1.0])
-#     easy = np.array([0.02, 0.98])
-#     assert focal_loss(p, easy, gamma=2.0) < cross_entropy(p, easy)
+def test_focal_loss_downweights_an_easy_example():
+    p = np.array([0.0, 1.0])
+    easy = np.array([0.02, 0.98])
+    assert focal_loss(p, easy, gamma=2.0) < cross_entropy(p, easy)
 
 
-# def test_focal_loss_downweights_easy_more_than_hard():
-#     p = np.array([0.0, 1.0])
-#     easy = np.array([0.02, 0.98])
-#     hard = np.array([0.45, 0.55])
-#     easy_ratio = focal_loss(p, easy, gamma=2.0) / cross_entropy(p, easy)
-#     hard_ratio = focal_loss(p, hard, gamma=2.0) / cross_entropy(p, hard)
-#     assert easy_ratio < hard_ratio
+def test_focal_loss_downweights_easy_more_than_hard():
+    p = np.array([0.0, 1.0])
+    easy = np.array([0.02, 0.98])
+    hard = np.array([0.45, 0.55])
+    easy_ratio = focal_loss(p, easy, gamma=2.0) / cross_entropy(p, easy)
+    hard_ratio = focal_loss(p, hard, gamma=2.0) / cross_entropy(p, hard)
+    assert easy_ratio < hard_ratio
 
 
-# def test_focal_loss_alpha_weights_the_target_class():
-#     p = np.array([0.0, 1.0])
-#     q = np.array([0.3, 0.7])
-#     base = focal_loss(p, q, gamma=2.0, alpha=None)
-#     weighted = focal_loss(p, q, gamma=2.0, alpha=np.array([0.75, 0.25]))
-#     assert weighted == pytest.approx(0.25 * base)
+def test_focal_loss_alpha_weights_the_target_class():
+    p = np.array([0.0, 1.0])
+    q = np.array([0.3, 0.7])
+    base = focal_loss(p, q, gamma=2.0, alpha=None)
+    weighted = focal_loss(p, q, gamma=2.0, alpha=np.array([0.75, 0.25]))
+    assert weighted == pytest.approx(0.25 * base)
