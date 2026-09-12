@@ -153,7 +153,7 @@ def kl_divergence(p: np.ndarray, q: np.ndarray) -> float:
     q = np.asarray(q, dtype=float)
     mask = p > 0
     q_safe = np.clip(q[mask], 1e-12, None)
-    ratio = q_safe / p[mask]
+    ratio = p[mask] / q_safe
     return float((p[mask] * np.log(ratio)).sum())
 # ============================ END TODO (Task 6) ==============================
 
