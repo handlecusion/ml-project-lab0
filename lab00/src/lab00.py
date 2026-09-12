@@ -126,7 +126,6 @@ def cross_entropy(p: np.ndarray, q: np.ndarray) -> float:
     """
     p = np.array(p, dtype=float)
     q = np.array(q, dtype=float)
-    print(p, q)
     mask = p > 0
     q_safe = np.clip(q[mask], 1e-12, None)
     return float(-(p[mask] * np.log(q_safe)).sum())
